@@ -1,1 +1,1 @@
-# My nvim config. Started from nvchad starter
+My nvim config. Started from nvchad starter
