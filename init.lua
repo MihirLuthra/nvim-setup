@@ -37,3 +37,22 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.cmd [[
+  map <M-s> :tabnext<CR>
+  map <M-a> :tabprev<CR>
+
+  map <C-Up> 7<Up>
+  map <C-Down> 7<Down>
+
+  map <C-q> :NvimTreeToggle<CR>
+  map <C-a> <C-w>w
+
+  map <C-x> <leader>x
+
+  set iskeyword+=-
+  " Using your mouse doesn't work inside vim
+  " like it because I can use mouse to copy something
+  " without changing my vim cursor.
+  set mouse=
+]]

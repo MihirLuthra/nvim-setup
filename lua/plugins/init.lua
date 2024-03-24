@@ -85,4 +85,18 @@ return {
   --     "nvim-neotest/nvim-nio",
   --   },
   -- },
+
+  {
+    "tpope/vim-abolish",
+    lazy = false,
+    opts = {},
+    config = function() end,
+  },
+
+  {
+    "christoomey/vim-system-copy",
+    lazy = false,
+    opts = {},
+    config = function() end,
+  },
 }
