@@ -92,11 +92,4 @@ return {
     opts = {},
     config = function() end,
   },
-
-  {
-    "christoomey/vim-system-copy",
-    lazy = false,
-    opts = {},
-    config = function() end,
-  },
 }

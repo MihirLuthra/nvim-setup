@@ -42,6 +42,8 @@ vim.cmd [[
   map <M-s> :tabnext<CR>
   map <M-a> :tabprev<CR>
 
+  map <C-Right> w
+  map <C-Left> b
   map <C-Up> 7<Up>
   map <C-Down> 7<Down>
 
@@ -55,4 +57,23 @@ vim.cmd [[
   " like it because I can use mouse to copy something
   " without changing my vim cursor.
   set mouse=
+  " vim yank shouldn't copy to system clipboard
+  set clipboard=
+
+  " To copy to system clipboard
+  vnoremap cp :call CopyVisualSelection()<CR>
+  function! CopyVisualSelection()
+      let [line_start, column_start] = getpos("'<")[1:2]
+      let [line_end, column_end] = getpos("'>")[1:2]
+      let lines = getline(line_start, line_end)
+      if len(lines) == 0
+          return
+      endif
+      let lines[0] = lines[0][column_start - 1:]
+      let lines[-1] = lines[-1][:column_end - 1]
+      let text = join(lines, "\n")
+      call system('echo -n ' . shellescape(text) . ' | xclip -selection clipboard')
+  endfunction
+  nnoremap cp$ :call system('xclip -selection clipboard', getline('.')[col('.') - 1:])<CR>
+
 ]]
