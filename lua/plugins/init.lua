@@ -92,4 +92,31 @@ return {
     opts = {},
     config = function() end,
   },
+
+  {
+    "tpope/vim-fugitive",
+    lazy = false,
+    config = function() end,
+    opts = {},
+  },
+
+  {
+    "tommcdo/vim-fubitive",
+    lazy = false,
+    opts = {},
+    config = function() end,
+    dependencies = {
+      "tpope/vim-fugitive",
+    },
+  },
+
+  {
+    "tpope/vim-rhubarb",
+    lazy = false,
+    opts = {},
+    config = function() end,
+    dependencies = {
+      "tpope/vim-fugitive",
+    },
+  },
 }

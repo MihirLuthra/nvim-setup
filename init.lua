@@ -48,9 +48,9 @@ vim.cmd [[
   map <C-Down> 7<Down>
 
   map <C-q> :NvimTreeToggle<CR>
-  map <C-a> <C-w>w
+  map <leader>fc :Telescope find_files search_dirs={"%:h"}<CR>
 
-  map <C-x> <leader>x
+  map <C-d> :RustOpenDocs<CR>
 
   set iskeyword+=-
   " Using your mouse doesn't work inside vim
