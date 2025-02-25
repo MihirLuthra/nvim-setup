@@ -8,7 +8,10 @@ local servers = {
   "clangd",
   "cssls",
   "html",
+  "jdtls",
   "lua_ls",
+  "pyright",
+  -- "gopls"
 }
 
 -- Adds support to lua-language-server for init.lua
@@ -31,6 +34,17 @@ lspconfig.tsserver.setup {
   capabilities = capabilities,
 }
 
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  settings = {
+        gopls = {
+            buildFlags = {"-tags=pkcs11"},
+        },
+    },
+}
+
 lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
   on_init = on_init,
@@ -40,15 +54,19 @@ lspconfig.rust_analyzer.setup {
     -- https://github.com/Shatur/neovim-config/blob/master/plugin/lsp.lua#L155-L167
     RustOpenDocs = {
       function()
+        print "RustOpenDocs: Invoked" -- Debug print
         vim.lsp.buf_request(
           vim.api.nvim_get_current_buf(),
           "experimental/externalDocs",
           vim.lsp.util.make_position_params(),
           function(err, url)
             if err then
+              print("RustOpenDocs: Error - " .. tostring(err)) -- Debug print
               error(tostring(err))
             else
-              vim.fn["netrw#BrowseX"](url, 0)
+              print("RustOpenDocs: URL - " .. tostring(url)) -- Debug print
+              vim.fn.system("xdg-open '" .. url .. "'")
+              -- vim.fn["netrw#BrowseX"](url, 0)
             end
           end
         )

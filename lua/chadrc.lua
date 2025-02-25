@@ -12,7 +12,6 @@ M.ui = {
 
 -- TODO
 -- M.nvim_tree_lua = {
---   view = { adaptive_size = true },
 -- }
 
 return M

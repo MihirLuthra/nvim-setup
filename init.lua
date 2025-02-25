@@ -39,13 +39,17 @@ vim.schedule(function()
 end)
 
 vim.cmd [[
+  set noic
   map <M-s> :tabnext<CR>
   map <M-a> :tabprev<CR>
+  map l o<C-w>w
 
   map <C-Right> w
   map <C-Left> b
   map <C-Up> 7<Up>
   map <C-Down> 7<Down>
+  map <C-a> <M-h>
+  tmap <C-a> <M-h>
 
   map <C-q> :NvimTreeToggle<CR>
   map <leader>fc :Telescope find_files search_dirs={"%:h"}<CR>
@@ -75,5 +79,10 @@ vim.cmd [[
       call system('echo -n ' . shellescape(text) . ' | xclip -selection clipboard')
   endfunction
   nnoremap cp$ :call system('xclip -selection clipboard', getline('.')[col('.') - 1:])<CR>
-
 ]]
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "sh",
+  command = "setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab",
+})
+
